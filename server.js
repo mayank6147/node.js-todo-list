@@ -2,11 +2,11 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 
-
+const date = require(__dirname + '/date.js');
 
 const app = express();
-var items = [];
-var workList = [];
+const  items = [];
+const  workList = [];
 app.set("view engine", "ejs");
 app.use(
   bodyParser.urlencoded({
@@ -19,15 +19,16 @@ app.use(
 app.use(express.static("public"));
 
 app.get("/", function (req, res) {
-  var today = new Date();
+/*   var today = new Date();
 
   var options = {
     weekday: "long",
     day: "numeric",
     month: "long",
   };
-  var day = today.toLocaleDateString("en-US", options);
-  /* for sending data to html templete*/
+  var day = today.toLocaleDateString("en-US", options); */
+/* for sending data to html templete*/
+  var day = date.getDate();
   res.render("list", {
     listTitles: day,
     listItems: items,
